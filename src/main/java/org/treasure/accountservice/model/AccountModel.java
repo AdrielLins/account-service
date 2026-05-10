@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.treasure.accountservice.domain.enums.AccountStatus;
 import org.treasure.accountservice.domain.enums.AccountType;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,10 @@ public class AccountModel {
 
     @Enumerated(EnumType.STRING)
     private AccountType type;
+
+
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

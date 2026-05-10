@@ -1,7 +1,7 @@
 package org.treasure.accountservice.web.controller.dto.response;
 
 import lombok.Data;
-import org.treasure.accountservice.domain.enums.AccountType;
+import org.treasure.accountservice.domain.enums.AccountStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,7 +10,7 @@ import java.util.UUID;
 public class AccountResponse {
     private UUID id;
     private String name;
-    private AccountType type;
+    private AccountStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
