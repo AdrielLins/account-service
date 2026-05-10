@@ -2,10 +2,12 @@ package org.treasure.accountservice.web.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.treasure.accountservice.mapper.AccountResponseMapper;
 import org.treasure.accountservice.service.AccountService;
 import org.treasure.accountservice.web.controller.dto.request.AccountRequest;
+import org.treasure.accountservice.web.controller.dto.request.UpdateAccountStatusRequest;
 import org.treasure.accountservice.web.controller.dto.response.AccountResponse;
 
 import java.util.List;
@@ -41,5 +43,22 @@ public class AccountsController implements AccountsApi {
         return responseMapper.map(
             service.create(request)
         );
+    }
+
+    @PutMapping("{id}")
+    @Override
+    public AccountResponse update(@PathVariable final UUID id,
+                                  @RequestBody @Valid final AccountRequest request) {
+        return responseMapper.map(
+            service.update(id, request)
+        );
+    }
+
+    @Override
+    @PutMapping("{id}/status")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStatus(@PathVariable final UUID id,
+                             @RequestBody @Valid UpdateAccountStatusRequest status) {
+        service.updateStatus(id, status);
     }
 }
